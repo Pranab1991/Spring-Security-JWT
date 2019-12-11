@@ -19,9 +19,7 @@ public class NavigatorController {
 	UsersRepository repo;
 
 	@RequestMapping("/test")
-	public String welcome(@RequestParam String username) {
-		System.out.println(username);
-		Optional<User> user=repo.findByUsername(username);
+	public String welcome() {
 		return "<h1>Welcome</h1>";
 	}
 	
