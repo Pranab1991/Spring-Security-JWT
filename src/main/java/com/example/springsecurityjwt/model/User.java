@@ -3,6 +3,7 @@ package com.example.springsecurityjwt.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,10 +22,11 @@ public class User {
 	private String username;
 	private boolean enabled;
 	private String emailId;
+	private String password;
 	//@ManyToMany
 	//private List<Authorities> authorities;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 	  name = "user_authority", 
 	  joinColumns = @JoinColumn(name = "user_id"), 
@@ -36,6 +38,18 @@ public class User {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public List<Authorities> getMappedAuthorities() {
+		return mappedAuthorities;
+	}
+	public void setMappedAuthorities(List<Authorities> mappedAuthorities) {
+		this.mappedAuthorities = mappedAuthorities;
 	}
 	public String getUsername() {
 		return username;
